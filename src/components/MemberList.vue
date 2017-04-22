@@ -38,9 +38,10 @@ export default {
 <style scoped>
 ul#member-list {
   display: block;
-  padding: 0;
+  padding: 8px;
   margin: auto;
   width: 400px;
+  max-width: 100%;
 }
 
 ul#member-list>li {
@@ -57,6 +58,7 @@ ul#member-list>li:first-child {
 
 ul#member-list>li .avatar {
   width: 50px;
+  height: 50px;
   border: 1px solid #2c3e50;
   border-radius: 50%;
 }
