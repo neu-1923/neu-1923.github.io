@@ -11,7 +11,9 @@
         </li>
       </ul>
     </nav>
-    <router-view></router-view>
+    <div id="router-container">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -53,6 +55,10 @@ export default {
 </style>
 
 <style scoped>
+
+#router-container {
+  padding: 8px;
+}
 
 #navigator {
   display: block;
