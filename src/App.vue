@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <p id="header">
+      <img src="./assets/logo.png">
+      <span class="title">NEU Github Organization</span>
+    </p>
     <nav id="navigator">
       <ul>
         <li v-for="link in links">
@@ -8,7 +11,9 @@
         </li>
       </ul>
     </nav>
-    <router-view></router-view>
+    <div id="router-container">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -51,6 +56,10 @@ export default {
 
 <style scoped>
 
+#router-container {
+  padding: 8px;
+}
+
 #navigator {
   display: block;
 }
@@ -77,6 +86,38 @@ a {
     text-decoration: none;
     /*background: #2c3e50;
     color: white;*/
+}
+
+#header {
+  margin: 0;
+}
+
+.title {
+  font-size: 36px;
+  vertical-align: middle;
+}
+
+img {
+  width: 60px;
+  height: 60px;
+  vertical-align: middle;
+}
+
+@media(max-width: 767px) {
+  #app {
+    margin-top: 20px;
+  }
+  img {
+    width: 30px;
+    height: 30px;
+  }
+  .title {
+    font-size: 18px;
+  }
+  #navigator > ul > li {
+    margin: 4px;
+    font-size: 14px;
+  }
 }
 
 </style>

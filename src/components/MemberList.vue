@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div id="member-list-root">
     <ul v-if="list != null" id="member-list">
       <li v-for="item in list">
         <img class="avatar" :src="item.avatar_url">
         <div class="content">
-          <p class="title">{{item.login}}</p>
-          <a class="url" :href="item.html_url">{{item.html_url}}</a>
+          <p class="title">{{item.name || item.login}}</p>
+          <a class="url" :href="item.html_url">{{item.login}}</a>
         </div>
       </li>
     </ul>
@@ -23,7 +23,21 @@ export default {
   mounted () {
     axios.get('https://api.github.com/orgs/neu-1923/members')
       .then(response => {
-        this.list = response.data
+        this.list = response.data.map(item => {
+          return {
+            name: null,
+            url: item.url,
+            html_url: item.html_url,
+            login: item.login,
+            avatar_url: item.avatar_url
+          }
+        })
+        this.list.forEach(member => {
+          axios.get(member.url)
+            .then(res => {
+              member.name = res.data.name
+            })
+        })
       })
   },
   data () {
@@ -36,11 +50,16 @@ export default {
 
 
 <style scoped>
-ul#member-list {
+div#member-list-root {
+  padding: 8px;
+}
+
+ul#member-list  {
   display: block;
-  padding: 0;
   margin: auto;
+  padding: 0;
   width: 400px;
+  max-width: 100%;
 }
 
 ul#member-list>li {
@@ -57,12 +76,12 @@ ul#member-list>li:first-child {
 
 ul#member-list>li .avatar {
   width: 50px;
+  height: 50px;
   border: 1px solid #2c3e50;
   border-radius: 50%;
 }
 
 ul#member-list>li .content {
-  width: 350px;
   display: flex;
   flex-direction: column;
 }
