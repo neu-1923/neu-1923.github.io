@@ -1,5 +1,5 @@
 # neu-1923.github.io
-> Site for NEU Github Organization
+> [Site](http://neu-1923.github.io) for NEU Github Organization
 
 ## Build Setup
 
