@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Index from '@/components/Index'
 import Join from '@/components/Join'
 import MemberList from '@/components/MemberList'
+import ProjectList from '@/components/ProjectList'
 
 Vue.use(Router)
 
@@ -24,11 +25,11 @@ export default new Router({
     //   name: 'ApplyProject',
     //   component: Hello
     // },
-    // {
-    //   path: '/project',
-    //   name: 'ProjectList',
-    //   component: Hello
-    // },
+    {
+      path: '/project',
+      name: 'ProjectList',
+      component: ProjectList
+    },
     {
       path: '/member',
       name: 'MemberList',

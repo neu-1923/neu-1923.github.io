@@ -34,6 +34,10 @@ export default {
         {
           title: '公共成员列表',
           path: 'member'
+        },
+        {
+          title: '项目列表',
+          path: 'project'
         }
       ]
     }
