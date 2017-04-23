@@ -17,13 +17,14 @@
 
 
 <script>
-import axios from 'axios'
+import githubApi from '@/utils/github-api.js'
+const {getOrgMembers, getUserInfo} = githubApi
 
 export default {
   mounted () {
-    axios.get('https://api.github.com/orgs/neu-1923/members')
-      .then(response => {
-        this.list = response.data.map(item => {
+    getOrgMembers()
+      .then(data => {
+        this.list = data.map(item => {
           return {
             name: null,
             url: item.url,
@@ -33,9 +34,9 @@ export default {
           }
         })
         this.list.forEach(member => {
-          axios.get(member.url)
-            .then(res => {
-              member.name = res.data.name
+          getUserInfo(member.url)
+            .then(data => {
+              member.name = data.name
             })
         })
       })
